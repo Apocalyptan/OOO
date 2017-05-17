@@ -29,12 +29,12 @@ $(document).ready(function() {
 				self.removeColumn();
 			});
 			$columnAddCard.click(function() {
-				self.addCard(new Card(prompt('Enter card name')));
+				self.addCard(new Card(prompt('Enter card content')));
 			});
 
 			// Column Element Creation
-			$column.append($columnTitle)
-				.append($columnDelete)
+			$column.append($columnDelete)
+				.append($columnTitle)
 				.append($columnAddCard)
 				.append($columnCardList);
 
@@ -61,7 +61,7 @@ $(document).ready(function() {
 
 		function createCard() {
 			// Card Element Variables
-			var $card = $('li').addClass('card');
+			var $card = $('<li>').addClass('card');
 			var $cardDescription = $('<p>').addClass('card-description').text(self.description);
 			var $cardDelete = $('<button>').addClass('btn-delete').text('X');
 
@@ -86,7 +86,7 @@ $(document).ready(function() {
 	}
 
 	var board = {
-		name: 'Tablica Kanban',
+		name: 'Kanban',
 		addColumn: function(column) {
 			this.$element.append(column.$element);
 			initSortable();
@@ -109,7 +109,7 @@ $(document).ready(function() {
 
 
 	// TWORZENIE KOLUMN
-	var todoColumn = new Column('To Do');
+	var todoColumn = new Column('To Do')
 	var doingColumn = new Column('Doing');
 	var doneColumn = new Column('Done');
 
@@ -119,12 +119,13 @@ $(document).ready(function() {
 	board.addColumn(doneColumn);
 
 	// TWORZENIE NOWYCH EGZEMPLARZY KART
-	var card1 = new Card('Nowe zadanie');
-	var card2 = new Card('Stworzyc tablice kanban');
+	var card1 = new Card('New Task');
+	var card2 = new Card('create kanban');
 
 	// DODAWANIE KART DO KOLUMN
 	todoColumn.addCard(card1);
 	doingColumn.addCard(card2);
 
+	$("doneColumn").css("background-color", "green");
 });
 
